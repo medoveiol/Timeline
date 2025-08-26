@@ -1,0 +1,508 @@
+/* =========================
+   Colors, variables, sizes
+   ========================= */
+:root{
+  --navy:#0b1d3a;
+  --paper:#ffffff;
+  --good:#10b981;
+  --bad:#ef4444;
+
+  /* 🎨 Neon brand */
+  --brand-1:#89dbed;
+  --brand-2:#a0ffff;
+  --brand-3:#a6b7ff;
+  --brand-4:#71a5ff;
+
+  /* نربط المتغيرات القديمة بالألوان الجديدة */
+  --blue: var(--brand-4);
+  --teal: var(--brand-2);
+
+  /* خلفية الإطار */
+  --bg-img: url("images/Backg3.svg");
+
+  /* 📐 خلايا مرنة */
+  --cell-w: clamp(150px, 14vw, 170px);
+  --cell-h: calc(var(--cell-w) * 0.90);}
+
+/* Garet Book (عادي) */
+@font-face {
+  font-family: 'Garet';
+  src: url('fonts/Garet-Book.woff2') format('woff2'),
+       url('fonts/Garet-Book.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Garet Heavy (غامق) */
+@font-face {
+  font-family: 'Garet';
+  src: url('fonts/Garet-Heavy.woff2') format('woff2'),
+       url('fonts/Garet-Heavy.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* ================
+   Global & layout
+   ================ */
+*{box-sizing:border-box}
+html,body{
+  height:100%;
+  margin:0;
+  font-family:Inter,system-ui,Arial;
+  color:#fff;
+  background-color: var(--navy);
+}
+
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.12);
+  pointer-events:none;
+}
+
+.wrap{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(8px, 2vw, 14px);
+}
+
+/* =========================
+   Game frame (responsive)
+   ========================= */
+.frame{
+  width:min(96vw, 1200px);
+  aspect-ratio: 4 / 3;
+  max-height:96vh;
+  border-radius:22px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  background-color: rgba(255,255,255,.06);
+  background-image: var(--bg-img);
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover;
+  backdrop-filter: blur(2px);
+}
+
+/* =========================
+   Screens
+   ========================= */
+.screen{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  gap:clamp(8px, 1.2vw, 12px);
+  padding:clamp(10px, 1.6vw, 16px);
+}
+
+.start{align-items:center;justify-content:center}
+.card{
+  background:var(--paper);
+  border-radius:18px;
+  padding:clamp(18px, 2.2vw, 26px) clamp(16px, 2vw, 24px);
+  max-width:min(720px, 90%);
+  text-align:center;
+  color:#0b1d3a;
+  position: relative;
+  overflow: hidden;
+}
+h1{
+  margin:0 0 10px;
+  font-size:clamp(24px, 3.2vw, 38px);
+  color:var(--blue); font-weight:900;
+}
+p.sub{margin:0 0 18px;color:#38526c;font-size:clamp(14px,1.6vw,16px)}
+.btn{
+  border:0;
+  border-radius: clamp(8px, 1vw, 16px); /* 👈 مرن بدل 14px */
+  padding: clamp(14px, 1.6vw, 18px) clamp(24px, 2.4vw, 32px); /* 👈 كبرنا البادينق */
+  font-size: clamp(12px, 1.4vw, 14px); /* 👈 صغرنا النص */
+  color:white; font-weight:800; cursor:pointer;
+  background:linear-gradient(135deg,var(--brand-4),var(--brand-2));
+  box-shadow: 0 0 10px rgba(137,219,237,.18);
+}
+/* عند المرور بالماوس */
+.btn:hover {
+  background-position: right center; /* يحرك التدرج */
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(137,219,237,.35);
+}
+
+/* عند الضغط (حتى على الآيباد / الموبايل) */
+.btn:active {
+  transform: translateY(2px) scale(0.97); 
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+
+
+/* === GAME SCREEN === */
+.game{display:none}
+
+
+
+/* =========================
+   Board + slots + years
+   ========================= */
+
+.game-banner {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #123a4e, #0b1d3a);
+  text-align: center;
+  box-shadow: 0 0 14px rgba(0,0,0,.25);
+}
+
+.game-banner h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 800;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+
+
+.slots{display:flex;gap:clamp(8px,1vw,10px);justify-content:space-between;flex-wrap:wrap}
+/* المربع (slot) */
+.slot {
+  margin-bottom: 10px;
+  width: var(--cell-w);   /* 👈 العرض متغير */
+  height: var(--cell-h);  /* 👈 الطول متغير */
+  border: 2px dashed #55aaff;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 👈 يخلي الكلام في النص */
+}
+.slot.filled{border-style:solid; border-color: rgba(113,165,255,.9);}
+.slot .ph{color:#3c5a75;opacity:.8}
+.slot.filled .ph{display:none}
+
+
+/* صف السنوات + المربعات */
+.years-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-left: 3%;
+  margin-top: 5%; /* يخليهم فوق الخط */
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+/* الحاوية لكل سنة */
+.year-wrapper {
+  top: 30%;                    /* 👈 بداية من نص البورد */
+  display: flex;
+  flex-direction: column;   /* المربع فوق والدائرة تحت */
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: 2;               /* فوق الخط */
+}
+.year-wrapper .slot {
+  margin-bottom: 12px; 
+  
+}
+.year-wrapper .year-point {
+  margin-top: 12px;
+}
+
+/* الحالة العادية */
+.year-point {
+  background: #fff;
+  border: 3px solid var(--brand-4);
+  border-radius: 50%;
+  width: clamp(40px, 5vw, 56px);
+  height: clamp(40px, 5vw, 56px);
+  line-height: clamp(40px, 5vw, 50px);
+  text-align: center;
+  font-weight: 900;
+  font-size: clamp(11px, 1.6vw, 16px);
+  color: #0b1d3a;
+  box-shadow: 0 0 10px rgba(113,165,255,.25);
+  transition: all 0.3s ease;
+}
+/* لما ينحط كارد */
+.year-point.filled {
+  background: linear-gradient(135deg, var(--brand-4), var(--brand-2));
+  color: #fff;
+  border-color: var(--brand-2);
+  box-shadow: 0 0 20px rgba(160,255,255,.6), 0 0 30px rgba(113,165,255,.5);
+  animation: pulseGlow 4s infinite ease-in-out; /* 👈 بطيء أكثر */
+}
+
+/* تأثير وميض */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(160,255,255,.5), 0 0 20px rgba(113,165,255,.3); }
+  50% { box-shadow: 0 0 20px rgba(160,255,255,.8), 0 0 40px rgba(113,165,255,.6); }
+  100% { box-shadow: 0 0 10px rgba(160,255,255,.5), 0 0 20px rgba(113,165,255,.3); }
+}
+
+
+.timeline {
+  position: absolute;
+  left: 10%;  
+  right: 10%;
+  margin: 0 auto;
+  height: clamp(4px, 0.8vw, 10px);  /* سمك مرن */
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-4), var(--brand-2));
+  opacity: .9;
+  filter: saturate(.9) brightness(.96);
+  /* نخلي الخط يمر من منتصف الدوائر */
+  top: calc(50% + 0px);  
+  z-index: 1;
+}
+
+
+
+/* المربعات الي تحت الخط*/
+
+.tray {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 3%;
+  margin-top: 2%; /* يخليهم فوق الخط */
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+
+/* =========================
+   Cards tray + card items
+   ========================= */
+.cards{display:flex;gap:clamp(8px,1vw,15px);flex-wrap:wrap;justify-content:space-between}
+
+.cardItem{
+  width:var(--cell-w); height:var(--cell-h);
+  background:var(--paper); border-radius:14px; border:2px solid var(--brand-4);
+  padding:10px; cursor:grab; display:flex; flex-direction:column;
+  justify-content:space-between; color:#0b1d3a;
+  text-align: center;    /* 🔹 يخلي النصوص وسط */
+
+}
+.chip{height:6px;border-radius:6px;background:linear-gradient(90deg, var(--brand-4), var(--brand-2)); filter: saturate(.9) brightness(.96);}
+.title{font-weight:900;font-size:clamp(12px,1.6vw,14px)}
+.hint{font-size:clamp(10px,1.4vw,11px);color:#4a657a}
+
+/* =========================
+   Toolbar & feedback
+   ========================= */
+.toolbar {
+  position: absolute;   /* 👈 تثبيت */
+  justify-content: center;   /* يوسّط الأزرار أفقياً */
+  align-items: center;    
+  position: absolute;   /* 👈 تثبيت */
+  bottom: 30px;         /* 👈 دايم تحت */
+  left: 40%;            /* 👈 نبدأ من النص */   /* يوسّط عمودياً */
+  gap: 20px;                 /* مسافة بين الأزرار */
+}
+
+
+.feedback {
+  display: none;   /* مخفي افتراضياً */
+  margin: 12px auto;
+   margin-top: 6%; 
+  font-weight:900;
+  text-align: center;
+  font-size:clamp(16px,1.6vw,20px);
+}
+
+
+.feedback.ok { color: var(--good); }
+.feedback.err { color: var(--bad); }
+
+
+.correction {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--bad);
+  text-align: center;
+}
+
+
+
+
+.result-img.success {
+  max-width: 240px;   /* 👈 كبرنا العرض */
+  margin:0 auto;     /* يوسّط الصورة */
+  display: block;
+  margin-top: -76px;  /* 👈 يرفع الصورة فوق */
+}
+
+.result-img.fail {
+  max-width: 250px;   /* 👈 كبرنا العرض */
+  margin:0 auto;     /* يوسّط الصورة */
+  display: block;
+  margin-top: -75px;  /* 👈 يرفع الصورة فوق */
+}
+
+
+
+.card-icon {
+  width: 55px;       /* 👈 حجم الأيقونة */
+  height: 55px;
+  object-fit: contain;
+  margin: 6px auto;  /* يخليها بالنص */
+  display: block;
+}
+
+/* مخصص للـ World Wide Web */
+.cardItem[data-id="www91"] .card-icon {
+  width: 80px;   /* 👈 أكبر */
+}
+
+.cardItem[data-id="mac84"] .card-icon {
+  width: 100px;   /* 👈 أكبر */
+}
+
+.cardItem[data-id="iphone07"] .card-icon {
+  width: 100px;   /* 👈 أكبر */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Gaming Start Screen + Logo
+   ========================= */
+.logo-bar {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+  pointer-events: none;
+}
+.logo-bar img { pointer-events: auto; }
+.logo-left { width: clamp(70px, 12vw, 200px); height: auto; }
+.logo-right { width: clamp(70px, 12vw, 200px); height: auto; }
+
+/* خلفية متحركة لشاشة البداية */
+.start{
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(135deg, rgba(11,29,58,.0), rgba(72,118,154,.08), rgba(11,29,58,.0));
+  background-size: 140% 140%;
+  animation: startBg 16s ease-in-out infinite alternate;
+}
+@keyframes startBg{
+  0%{ background-position: 0% 50%; }
+  100%{ background-position: 100% 50%; }
+}
+
+.start-card{
+  text-align:center;
+  background: rgba(0,0,0,0.55);
+  padding: clamp(28px, 4vw, 44px) clamp(22px, 3.5vw, 36px);
+  border-radius: 22px;
+  border: 2px solid var(--brand-1);
+  border-color: rgba(137,219,237,.70);
+  box-shadow:
+    0 0 24px rgba(160,255,255,.20),
+    0 0 36px rgba(113,165,255,.16);
+  backdrop-filter: blur(3px);
+  max-width: min(760px, 92%);
+  margin-inline:auto;
+}
+
+/* عنوان اللعبة */
+.game-title{
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  margin:0 0 14px;
+  font-size: clamp(32px, 5vw, 56px);
+  color: var(--brand-2);
+  letter-spacing: 1.5px;
+  text-shadow:
+    0 0 8px  rgba(160,255,255,.70),
+    0 0 18px rgba(166,183,255,.55);
+}
+
+/* وصف صغير */
+.tagline{
+  font-family: 'Almarai', sans-serif;
+  margin: 0 0 26px;
+  font-size: clamp(14px, 2vw, 17px);
+  color: #d1d5db;
+}
+
+/* زر Start */
+.start-btn{
+  border: none;
+  padding: clamp(12px, 1.8vw, 18px) clamp(28px, 3.6vw, 44px);
+  border-radius: 999px;
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-weight: 800;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(90deg, var(--brand-4), var(--brand-2));
+  background-size: 200% auto;
+  box-shadow:
+    0 0 16px rgba(113,165,255,.38),
+    inset 0 0 8px rgba(255,255,255,.10);
+  transition: transform .18s ease, box-shadow .18s ease, background-position .28s ease;
+}
+.start-btn:hover{
+  background-position: right center;
+  transform: translateY(-1px) scale(1.015);
+  box-shadow:
+    0 0 14px rgba(160,255,255,.45),
+    inset 0 0 8px rgba(255,255,255,.12);
+}
+.start-btn:active{ transform: translateY(0) scale(.99); }
+
+/* أيقونات جانبية */
+.start-card .side-icon {
+  position: absolute;
+  bottom: 50px;
+  opacity: 0.65;
+  filter: drop-shadow(0 0 6px rgba(160,255,255,.35));
+}
+.start-card .side-icon.left { left: 55px; }
+.start-card .side-icon.right { right: 55px; }
+.start-card .side-icon img { width: clamp(40px, 8vw, 150px); height: auto; }
+.start-card .side-icon.right img { transform: rotate(-15deg); }
+.start-card .side-icon.left img { transform: rotate(15deg); }
+
+/* =========================
+   Small tweaks
+   ========================= */
+@media (min-width: 768px){ .toolbar{gap:12px} }
+@media (min-width: 1024px){
+  .title{font-size:clamp(13px,1.2vw,16px)}
+  .hint{font-size:clamp(11px,1vw,12px)}
+}
+@media (max-width: 420px){
+  .logo-bar{ top:8px; left:8px; }
+  .start-card{ padding: 22px 16px; border-radius:18px; }
+}
+
+/* احترام تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce){ .start{ animation: none; } }

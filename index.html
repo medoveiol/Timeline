@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Guess The Tech Timeline</title>
+
+  <!-- Sortable.js for drag-and-drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS File -->
+  <link rel="stylesheet" href="Timeline.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="frame">
+
+      <!-- شعار دائم -->
+      <div class="logo-bar" id="logoBar" aria-label="Game logo">
+        <img src="images/log.svg" alt="University Logo" class="logo-right">
+        <img src="images/logo.png" alt="TechHub Logo" class="logo-left">
+      </div>
+
+      <!-- START SCREEN -->
+      <section class="screen start" id="start" aria-label="Start screen">
+        <div class="start-card">
+          <!-- أيقونة يسار -->
+          <div class="side-icon left">
+            <img src="images/SandGlass.svg" alt="icon left">
+          </div>
+
+          <!-- أيقونة يمين -->
+          <div class="side-icon right">
+            <img src="images/Trime.png" alt="icon right">
+          </div>
+
+          <h1 class="game-title">
+            <span class="big">Guess</span>
+            <span class="small">The Tech Timeline</span>
+          </h1>
+          <p class="tagline">رتّب البطاقات من الأقدم إلى الأحدث</p>
+          <button class="start-btn" id="startBtn" aria-label="Start the game">▶ Start Game</button>
+        </div>
+      </section>
+
+      <section class="screen game" id="game" aria-label="Game screen">
+        <div class="board">
+        <!-- العبارة أعلى التايملاين -->
+          <div class="game-banner" id="gameBanner">
+            <h2>Arrange the cards in order</h2>
+          </div>
+
+        <!-- الخط + السنوات -->
+        <div class="timeline"></div>
+
+        <div class="years-row">
+          <div class="year-wrapper">
+            <div class="slot"><span class="ph">Drop here</span></div>
+            <div class="year-point">1984</div>
+          </div>
+
+          <div class="year-wrapper">
+            <div class="slot"><span class="ph">Drop here</span></div>
+            <div class="year-point">1991</div>
+          </div>
+
+          <div class="year-wrapper">
+            <div class="slot"><span class="ph">Drop here</span></div>
+            <div class="year-point">1998</div>
+          </div>
+
+          <div class="year-wrapper">
+            <div class="slot"><span class="ph">Drop here</span></div>
+            <div class="year-point">2004</div>
+          </div>
+
+          <div class="year-wrapper">
+            <div class="slot"><span class="ph">Drop here</span></div>
+            <div class="year-point">2007</div>
+          </div>
+
+          <div class="year-wrapper">
+            <div class="slot"><span class="ph">Drop here</span></div>
+            <div class="year-point">2022</div>
+          </div>
+
+        </div>
+
+         
+          <!-- 👇 الرسالة هنا -->
+          <div class="feedback" id="feedback" aria-live="polite"></div>
+
+          <!-- التراي للكروت -->
+          <div class="tray">
+            <div class="cards" id="tray"></div>
+          </div>
+
+          <!-- الأزرار -->
+          <div class="toolbar">
+            <button class="btn" id="checkBtn" disabled>Check</button>
+            <button class="btn" id="resetBtn" style="background:linear-gradient(135deg,#6b7d8f,#8eb4af)">Restart</button>
+          </div>
+        </div>
+      </section>
+
+
+
+  <!-- JavaScript File -->
+  <script src="Timeline.js"></script>
+</body>
+</html>
