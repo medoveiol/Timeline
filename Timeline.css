@@ -543,7 +543,7 @@ body::before{
   
 
   .years-row {
-    margin-top: 10%;  
+    margin-top: 8%;  
   }
 
 
@@ -588,7 +588,7 @@ body::before{
   }
 
   .years-row {
-    margin-top: 10%;    
+    margin-top: 9%;    
   }
 
   .result-img.success,
@@ -604,6 +604,7 @@ body::before{
   }
  
 }
+
 
 
 
