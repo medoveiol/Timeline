@@ -44,7 +44,7 @@ const ALL_EVENTS = [
   { id:"google98", title:"Google Founded", year:1998, hint:"Search revolution",     img:"images/Google.svg" },
   { id:"msn99", title:"MSN Messenger", year:1999, hint:"Instant messaging era", img:"images/msn.svg" },
   { id:"fb04", title:"Facebook Launch",   year:2004, hint:"Mainstream social media",img:"images/facebook.png" },
-  { id:"bb05", title:"BlackBerry Smartphone", year:2005, hint:"QWERTY keyboard & BBM era", img:"images/blackb.svg" },
+  { id:"bb05", title:"BlackBerry Smartphone", year:2005, hint:"BBM era", img:"images/blackb.svg" },
   { id:"iphone07", title:"First iPhone",  year:2007, hint:"Smartphone era",         img:"images/frist.png" },
   { id:"chatgpt22", title:"ChatGPT Launch",year:2022, hint:"Generative AI",         img:"images/ChatG.png" }
 ];
@@ -291,4 +291,5 @@ resetBtn.addEventListener('click', ()=>{
 
 window.addEventListener('load', adjustTimeline);
 window.addEventListener('resize', adjustTimeline);
+
 
