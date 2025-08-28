@@ -412,7 +412,7 @@ body::before{
 .result-img.success,
 .result-img.fail {
   max-width: 220px;
-  width: 22%;         
+  width: 20%;         
   height: auto;
   position: absolute; 
   bottom: 90px;       
@@ -541,7 +541,7 @@ body::before{
     font-size: clamp(8px, 1.1vw, 10px); 
   }
     .years-row {
-    margin-top: 3%;    
+    margin-top: 1%;    
   }
 
    .result-img.success {
@@ -593,13 +593,13 @@ body::before{
   }
 
   .years-row {
-    margin-top: 6%;    
+    margin-top: 3%;    
   }
 
   .result-img.success,
   .result-img.fail {
     bottom: 90px;
-    width: 25%;
+    width: 20%;
   }
   
   .correction {
@@ -609,6 +609,7 @@ body::before{
   }
  
 }
+
 
 
 
