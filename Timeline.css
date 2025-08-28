@@ -594,7 +594,7 @@ body::before{
   .result-img.success,
   .result-img.fail {
     bottom: 90px;
-    width: 28%;
+    width: 25%;
   }
   
   .correction {
@@ -604,6 +604,7 @@ body::before{
   }
  
 }
+
 
 
 
