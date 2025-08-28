@@ -12,6 +12,11 @@
 
   <!-- CSS File -->
   <link rel="stylesheet" href="Timeline.css">
+
+  <!-- Web App config -->
+  <meta name="timeline-endpoint" content="https://script.google.com/macros/s/AKfycbwQ7amq_lxyfuxESglrsDaJv7FhHGafgMSDXxARP_RTLe5Vw_EBGu_6Mw2l-X7IIlJo8w/exec">
+  <meta name="timeline-key" content="norah_secret_125">
+
 </head>
 <body>
   <div class="wrap">
@@ -45,50 +50,20 @@
         </div>
       </section>
 
+      <!-- GAME SCREEN -->
       <section class="screen game" id="game" aria-label="Game screen">
         <div class="board">
-        <!-- العبارة أعلى التايملاين -->
+
+          <!-- العبارة أعلى التايملاين -->
           <div class="game-banner" id="gameBanner">
             <h2>Arrange the cards in order</h2>
           </div>
 
-        <!-- الخط + السنوات -->
-        <div class="timeline"></div>
-
-        <div class="years-row">
-          <div class="year-wrapper">
-            <div class="slot"><span class="ph">Drop here</span></div>
-            <div class="year-point">1984</div>
+          <!-- 🗓️ الخط + السنوات (تتولد بالـ JS) -->
+          <div class="years-row" id="yearsRow">
+            <div class="timeline"></div>
           </div>
 
-          <div class="year-wrapper">
-            <div class="slot"><span class="ph">Drop here</span></div>
-            <div class="year-point">1991</div>
-          </div>
-
-          <div class="year-wrapper">
-            <div class="slot"><span class="ph">Drop here</span></div>
-            <div class="year-point">1998</div>
-          </div>
-
-          <div class="year-wrapper">
-            <div class="slot"><span class="ph">Drop here</span></div>
-            <div class="year-point">2004</div>
-          </div>
-
-          <div class="year-wrapper">
-            <div class="slot"><span class="ph">Drop here</span></div>
-            <div class="year-point">2007</div>
-          </div>
-
-          <div class="year-wrapper">
-            <div class="slot"><span class="ph">Drop here</span></div>
-            <div class="year-point">2022</div>
-          </div>
-
-        </div>
-
-         
           <!-- 👇 الرسالة هنا -->
           <div class="feedback" id="feedback" aria-live="polite"></div>
 
@@ -105,9 +80,17 @@
         </div>
       </section>
 
+      <script>
+        window.TL_CFG = {
+          ENDPOINT: document.querySelector('meta[name="timeline-endpoint"]').content,
+          KEY: document.querySelector('meta[name="timeline-key"]').content
+        };
+      </script>
 
-
-  <!-- JavaScript File -->
-  <script src="Timeline.js"></script>
+      <!-- JavaScript File -->
+      <script src="Timeline.js"></script>
+    </div>
+  </div>
 </body>
 </html>
+
