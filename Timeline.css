@@ -431,7 +431,7 @@ body::before{
 
 
 .card-icon {
-  width: 50px;       /* 👈 حجم الأيقونة */
+  width: 45px;       /* 👈 حجم الأيقونة */
   height: 55px;
   object-fit: contain;
   margin: 6px auto;  /* يخليها بالنص */
@@ -609,6 +609,7 @@ body::before{
   }
  
 }
+
 
 
 
