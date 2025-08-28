@@ -557,6 +557,10 @@ body::before{
     line-height: 1; 
     margin-bottom: 5px;   
   }
+
+   .cardItem[data-id="bb05"] .card-icon {
+     width: 50px;   
+ }
 }
 
 
@@ -600,5 +604,6 @@ body::before{
   }
  
 }
+
 
 
