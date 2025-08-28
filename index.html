@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="Timeline.css">
 
   <!-- Web App config -->
-  <meta name="timeline-endpoint" content="https://script.google.com/macros/s/AKfycbwQ7amq_lxyfuxESglrsDaJv7FhHGafgMSDXxARP_RTLe5Vw_EBGu_6Mw2l-X7IIlJo8w/exec">
+  <meta name="timeline-endpoint" content="https://script.google.com/macros/s/AKfycbyEbIiuEN_6_Rhf3I6DLskGueH52bfxVQJuNgE3AoVs6OKWiwS5AHem1DdCU0M3psdtfA/exec">
   <meta name="timeline-key" content="norah_secret_125">
 
 </head>
@@ -22,7 +22,6 @@
   <div class="wrap">
     <div class="frame">
 
-      <!-- شعار دائم -->
       <div class="logo-bar" id="logoBar" aria-label="Game logo">
         <img src="images/log.svg" alt="University Logo" class="logo-right">
         <img src="images/logo.png" alt="TechHub Logo" class="logo-left">
@@ -54,25 +53,20 @@
       <section class="screen game" id="game" aria-label="Game screen">
         <div class="board">
 
-          <!-- العبارة أعلى التايملاين -->
           <div class="game-banner" id="gameBanner">
             <h2>Arrange the cards in order</h2>
           </div>
 
-          <!-- 🗓️ الخط + السنوات (تتولد بالـ JS) -->
           <div class="years-row" id="yearsRow">
             <div class="timeline"></div>
           </div>
 
-          <!-- 👇 الرسالة هنا -->
           <div class="feedback" id="feedback" aria-live="polite"></div>
 
-          <!-- التراي للكروت -->
           <div class="tray">
             <div class="cards" id="tray"></div>
           </div>
 
-          <!-- الأزرار -->
           <div class="toolbar">
             <button class="btn" id="checkBtn" disabled>Check</button>
             <button class="btn" id="resetBtn" style="background:linear-gradient(135deg,#6b7d8f,#8eb4af)">Restart</button>
@@ -93,4 +87,6 @@
   </div>
 </body>
 </html>
+
+
 
