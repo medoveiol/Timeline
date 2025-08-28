@@ -540,11 +540,13 @@ body::before{
   .hint {
     font-size: clamp(8px, 1.1vw, 10px); 
   }
-  
+    .years-row {
+    margin-top: 3%;    
+  }
 
    .result-img.success {
     bottom: 81px;    
-    width: 15%;
+    width: 10%;
   }
 
 
@@ -607,6 +609,7 @@ body::before{
   }
  
 }
+
 
 
 
