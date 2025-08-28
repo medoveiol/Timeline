@@ -542,10 +542,12 @@ body::before{
   }
   
 
- 
+   .result-img.success {
+    bottom: 81px;    
+    width: 15%;
+  }
 
 
-  .result-img.success,
   .result-img.fail {
     bottom: 81px;    
     width: 20%;
@@ -605,6 +607,7 @@ body::before{
   }
  
 }
+
 
 
 
