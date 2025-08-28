@@ -542,9 +542,7 @@ body::before{
   }
   
 
-  .years-row {
-    margin-top: 4%;  
-  }
+ 
 
 
   .result-img.success,
@@ -560,6 +558,9 @@ body::before{
 
    .cardItem[data-id="bb05"] .card-icon {
      width: 50px;   
+ }
+   .cardItem[data-id="bb05"] .card-icon {
+     width: 40px;   
  }
 }
 
@@ -604,6 +605,7 @@ body::before{
   }
  
 }
+
 
 
 
