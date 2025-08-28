@@ -550,7 +550,7 @@ body::before{
   .result-img.success,
   .result-img.fail {
     bottom: 81px;    
-    width: 26%;
+    width: 23%;
   }
   .correction {
     font-size: 10px;   
@@ -604,6 +604,7 @@ body::before{
   }
  
 }
+
 
 
 
